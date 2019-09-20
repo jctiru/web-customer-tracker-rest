@@ -16,4 +16,13 @@ public class CustomerRestExceptionHandler {
 		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	}
 
+	@ExceptionHandler
+	public ResponseEntity<CustomerErrorResponse> handleException(Exception e) {
+		CustomerErrorResponse error = new CustomerErrorResponse(HttpStatus.BAD_REQUEST.value(),
+				"Malformed request syntax",
+				System.currentTimeMillis());
+
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+	}
+
 }
